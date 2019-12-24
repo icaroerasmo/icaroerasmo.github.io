@@ -16,4 +16,4 @@ Esse é o primeiro post do blog! Hospedado no [Github Pages][github] e feito com
 Em breve pretendo postar muito conteúdo. Até lá!
 
 [github]: https://github.io
-[jekyll]:    http://jekyllrb.com
+[jekyll]:    https://jekyllrb.com

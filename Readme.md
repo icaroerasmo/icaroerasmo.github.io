@@ -1,4 +1,4 @@
-## Will Jekyll Template - [Demo](http://willianjusten.com.br/will-jekyll-template)
+## Will Jekyll Template - [Demo](https://willianjusten.com.br/will-jekyll-template)
 
 ![Screenshot](screenshot.png)
 
@@ -24,7 +24,7 @@ The Theme features:
 
 ## Basic Setup
 
-1. [Install Jekyll](http://jekyllrb.com)
+1. [Install Jekyll](https://jekyllrb.com)
 2. Fork the [Will Jekyll Template](https://github.com/willianjusten/will-jekyll-template/fork)
 3. Clone the repo you just forked.
 4. Edit `_config.yml` to personalize your site.
@@ -40,7 +40,7 @@ You have to fill some informations on `_config.yml` to customize your site.
 # Site settings
 description: A blog about lorem ipsum dolor sit amet
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://localhost:3000" # the base hostname & protocol for your site 
+url: "https://localhost:3000" # the base hostname & protocol for your site 
 
 # User settings
 username: Lorem Ipsum
