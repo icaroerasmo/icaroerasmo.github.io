@@ -50,13 +50,11 @@ jondoe@machine:~$ groups
 audio jondoe sudo
 ```
 
-
 If the output comes out as shown in the piece of code above you should skip the next step. If audio group was not shown, do:
 
 ```console
 jondoe@machine:~$ sudo usermod -a -G audio <your user here>
 ```
-
 
 After that, log out and log in again. If you don't know how to do that, simply reboot.
 
