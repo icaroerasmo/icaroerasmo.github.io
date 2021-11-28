@@ -18,6 +18,8 @@ categories:
 twitter_text: 'Installing Guitarix on Arch Linux'
 ---
 
+![Guitarix](/assets/img/2021-11-27-guitarix-arch-linux/main.png)
+
 For the past 6 years I have been messing exclusively with debian. 2 Years before that I started playing in
 Linux like many of us did: Installing Ubuntu. It was cool and stable to run Debian after all headaches I had
 with Ubuntu crashing apps and so on through the years. But I felt disappointed after every new game launched
