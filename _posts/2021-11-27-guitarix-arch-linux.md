@@ -2,7 +2,7 @@
 layout: post
 title: "Installing Guitarix on Arch Linux"
 date: 2021-11-27 19:58:00
-image: '/assets/img/2021-11-27-guitarix-arch-linux/'
+image: '/assets/img/2021-11-27-guitarix-arch-linux/main.png'
 description: 'Learn how to install Guitarix on Arch Linux'
 tags:
 - Arch Linux
