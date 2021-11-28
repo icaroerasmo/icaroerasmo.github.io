@@ -83,35 +83,35 @@ or pay attention to.
 
 Click on Configure:
 
-![Click on configure](./print1.png)
+![Click on configure](print1.png)
 
 then, click on Alsa:
 
-![Click on Alsa](./print2.png)
+![Click on Alsa](print2.png)
 
 Configure all highlighted fields in the image below. You should know how many input channels your recording interface has and how many output channels
 your audio box or headphones have or it may not work when you click on "start". The other parameters in properties section can be configured to fit your
 needs later. Don't forget to press "OK" when you're done.
 
-![Configure all highlighted fields](./print3.png)
+![Configure all highlighted fields](print3.png)
 
 Click on "start":
 
-![Press start](./print4.png)
+![Press start](print4.png)
 
 If is everything ok, you should see a message like the one highlighted in the image below:
 
-![Server Status: Started](./print5.png)
+![Server Status: Started](print5.png)
 
 Now open Guitarix and Qjackctl. In Qjackctl click on "start" and then on "graph" (I don't know how Qjackctl's interface is gonna show up in your Arch
 installation once mine is translated to portuguese but the image should help).
 
-![Qjackctl main interface](./print6.png)
+![Qjackctl main interface](print6.png)
 
 Connect your capture device output to "gx_head_amp", "gx_head_amp"'s output to "gx_head_fx" and "gx_head_fx"'s
 both outputs to each system playback input as follows:
 
-![Connecting devices](./print7.png)
+![Connecting devices](print7.png)
 
 You should be able to make a sound with your guitar now unless you missconnected any device wrongly. Each environment has its own particularities and the
 name of inputs and outputs may vary, so if it's not working, try to connect a different capture device to "gx_head_amp". In the image taken from my setup
