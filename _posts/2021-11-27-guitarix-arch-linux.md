@@ -60,7 +60,7 @@ After that, log out and log in again. If you don't know how to do that, simply r
 
 Now comes the best part of this tutorial: Making everything work!
 
-Pay attention to the red squared with round corners I have drawn in the images below. They point out to the fields you must click, fill  or pay attention to.
+Pay attention to the red squares with round corners I have drawn in the images below. They point out to the fields you must click, fill or pay attention to.
 
 Click on Configure:
 
