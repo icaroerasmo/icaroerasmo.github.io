@@ -30,7 +30,7 @@ so easily because of the lack of information about how to install things in Arch
 to write this article with everything you should do to install Guitarix.
 
 Guitarix is an amp and effects emulator for guitars and basses. I have always played my guitar with it once
-I am a financially broken middle guitarist. My lazyness was preventing me from installing it once I thought
+I am a financially broken middle guitarist. My laziness was preventing me from installing it once I thought
 it would be a tough task as maybe Arch Linux didn't have all dependencies ready to install through aurman
 as Debian did for most of them except [Cadence][cadence]. Surprisingly, it is all it's needed to run Guitarix
 without issues. Here it goes:
