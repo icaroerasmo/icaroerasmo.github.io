@@ -94,7 +94,7 @@ Configure all highlighted fields in the image below. You should know how many in
 your audio box or headphones have or it may not work when you click on "start". The other parameters in properties section can be configured to fit your
 needs later. Don't forget to press "OK" when you're done.
 
-![Configure all highlighted fields](print3.png)
+![Configure all highlighted fields](/assets/img/2021-11-27-guitarix-arch-linux/print3.png)
 
 Click on "start":
 
