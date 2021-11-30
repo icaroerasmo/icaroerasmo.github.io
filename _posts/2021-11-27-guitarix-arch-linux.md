@@ -90,7 +90,7 @@ Connect your capture device output to "gx_head_amp", "gx_head_amp"'s output to "
 
 ![Connecting devices](/assets/img/2021-11-27-guitarix-arch-linux/print7.png)
 
-You should be able to make a sound with your guitar now unless you missconnected any device wrongly. Each environment has its own particularities and the name of inputs and outputs may vary, so if it's not working, try to connect a different capture device to "gx_head_amp". In the image taken from my setup "capture_1" is my headset's microphone. That means that if it's not working is probably because you connected another recording device to "gx_head_amp".
+You should be able to make a sound with your guitar now unless you have connected any device wrongly. Each environment has its own particularities and the name of inputs and outputs may vary, so if it's not working, try to connect a different capture device to "gx_head_amp". In the image taken from my setup "capture_1" is my headset's microphone. That means that if it's not working is probably because you connected another recording device to "gx_head_amp".
 
 Well, I hope you enjoyed my first ever tutorial. Any question, please let me know through the comments section below in this post.
 
