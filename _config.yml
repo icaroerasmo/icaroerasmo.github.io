@@ -1,12 +1,12 @@
 # Site settings
 title: Icaro Erasmo's blog
-description: Linux, Java, Vue js, Angular e tudo mais sobre desenvolvimento.
+description: Linux, Java, Vue js, Angular and everything else about technology.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://icaroerasmo.com" # the base hostname & protocol for your site e.g. https://willianjusten.com.br
 
 # User settings
 username: Icaro Erasmo
-user_description: Fullstack Java Software Engineer at Iteris
+user_description: Fullstack Java Software Engineer
 user_title: Software Engineer
 email: me@icaroerasmo.com
 twitter_username: icaroerasmo
