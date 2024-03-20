@@ -1,0 +1,91 @@
+---
+layout: minimal
+title: "Mocker"
+permalink: /mocker/index.html
+description: "Http mock tool"
+---
+<h2>Mocker</h2>
+
+<div>
+	<button class="addRemoveMethod" value="GET">GET</button>
+	<button class="addRemoveMethod" value="POST">POST</button>
+	<button class="addRemoveMethod" value="PUT">PUT</button>
+	<button class="addRemoveMethod" value="PATCH">PATCH</button>
+	<button class="addRemoveMethod" value="DELETE">DELETE</button>
+</div>
+<div>
+	<div id="formArea">
+
+	</div>
+	<button id="send">Send</button>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+	let getElName = (method) => method.toLowerCase() + 'Req';
+	let genMethodPayload = (method) => 
+		`<div id="${getElName(method)}">` +
+		`<h4>${method}</h4>` + 
+		`<input class="method" type="hidden" value="${method}"/>` +
+		`<div><label>Body: </label><input class="body" type="text"/></div>` +
+		`<div class="headers">` +
+			`<div><label>Key: </label><input class="key"/></div>` +
+			`<div><label>Value: </label><input class="value"/></div>` +
+		`</div>`+
+		`<div><label>Produces: </label><input class="produces" type="text"/></div>` +
+		`<div><label>Status: </label><input class="status" type="text"/></div>` +
+		`</div>`;
+	$('.addRemoveMethod').click((event) => {
+		let method = event.target.value;
+		let el = $(`#${getElName(method)}`);
+		if(el.length) {
+			el.remove();
+		} else {
+			$('#formArea').append(genMethodPayload(method));
+		}
+	});
+	$('#send').click((event) => {
+
+			let payload = {routes: []};
+
+			$('#formArea > div').each((index, el) => {
+				let context = $(el);
+				let method = context.children('.method').val();
+				let body = context.find('.body').val();
+				let produces = context.find('.produces').val();
+				let status = context.find('.status').val();
+				let headers = {};
+
+				context.children('div.headers').each((index, el) => {
+					let context = $(el);
+					let key = context.find('.key').val();
+					let value = context.find('.value').val();
+
+					let header = {};
+
+					headers[key] = value;
+				});
+
+				payload.routes.push({body, produces, headers, status, method});
+
+				console.log(JSON.stringify(payload));
+			});
+
+
+			$.ajax({
+				type: "POST",
+				url: "https://mock.icaroerasmo.com/rt/",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				async: true,
+				data: JSON.stringify(payload),
+				success: function (response) {
+					$('#formArea').append(`https://mock.icaroerasmo.com/rt/run/${response.uuid}`);
+				}
+			});
+		});
+</script>
