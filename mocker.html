@@ -42,7 +42,7 @@ description: "Http mock tool"
 		`<div class="mt-5" id="${getElName(method)}">` +
 		`<div class="row"><h2>${method}</h2></div>` + 
 		`<input class="method" type="hidden" value="${method}"/>` +
-		`<div class="form-group"><label for="body_${method}">Body: </label><input id="body_${method}" class="form-control body" type="text"/></div>` +
+		`<div class="form-group"><label for="body_${method}">Body: </label><textarea id="body_${method}" class="form-control body" type="text" rows="5"/></textarea>` +
 		`<div class="headers">` +
 			`<div class="form-group"><label for="key_${method}_1">Key: </label><input id="key_${method}_1" class="form-control key"/></div>` +
 			`<div class="form-group"><label for="val_${method}_1">Value: </label><input id="val_${method}_1" class="form-control value"/></div>` +
