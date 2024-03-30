@@ -4,20 +4,27 @@ title: "Mocker"
 permalink: /mocker/index.html
 description: "Http mock tool"
 ---
-<h2>Mocker</h2>
-
-<div>
-	<button class="addRemoveMethod" value="GET">GET</button>
-	<button class="addRemoveMethod" value="POST">POST</button>
-	<button class="addRemoveMethod" value="PUT">PUT</button>
-	<button class="addRemoveMethod" value="PATCH">PATCH</button>
-	<button class="addRemoveMethod" value="DELETE">DELETE</button>
-</div>
-<div>
-	<div id="formArea">
-
+<div class="container">
+	<div class="row">
+		<label for="url">Generated URL: </label>
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="basic-addon3">https://mock.icaroerasmo.com/rt/run/</span>
+			<input type="text" class="form-control" id="url" aria-describedby="basic-addon3">
+			<button id="copy-to-clipboard" type="button" class="btn btn-outline-primary">copy</button>
+		</div>
 	</div>
-	<button id="send">Send</button>
+	<div class="row mt-5 justify-content-between">
+		<button type="button" class="addRemoveMethod col-2 ml-md-auto btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" value="GET">GET</button>
+		<button type="button" class="addRemoveMethod col-2 ml-md-auto btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" value="POST">POST</button>
+		<button type="button" class="addRemoveMethod col-2 ml-md-auto btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" value="PUT">PUT</button>
+		<button type="button" class="addRemoveMethod col-2 ml-md-auto btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" value="PATCH">PATCH</button>
+		<button type="button" class="addRemoveMethod col-2 ml-md-auto btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" value="DELETE">DELETE</button>
+	</div>
+	<div class="mt-5">
+		<div id="formArea" class="row">
+			<button id="send" type="button" class="btn btn-success col-sm mt-5">Send</button>
+		</div>
+	</div>
 </div>
 
 <script
@@ -26,37 +33,46 @@ description: "Http mock tool"
   crossorigin="anonymous"></script>
 
 <script type="text/javascript">
+	$("#copy-to-clipboard").click(function(event){
+		let urlVal = $("#url").val();
+		navigator.clipboard.writeText(`https://mock.icaroerasmo.com/rt/run/${urlVal}`);
+	});
 	let getElName = (method) => method.toLowerCase() + 'Req';
 	let genMethodPayload = (method) => 
-		`<div id="${getElName(method)}">` +
-		`<h4>${method}</h4>` + 
+		`<div class="mt-5" id="${getElName(method)}">` +
+		`<div class="row"><h2>${method}</h2></div>` + 
 		`<input class="method" type="hidden" value="${method}"/>` +
-		`<div><label>Body: </label><input class="body" type="text"/></div>` +
+		`<div class="form-group"><label for="body_${method}">Body: </label><input id="body_${method}" class="form-control body" type="text"/></div>` +
 		`<div class="headers">` +
-			`<div><label>Key: </label><input class="key"/></div>` +
-			`<div><label>Value: </label><input class="value"/></div>` +
+			`<div class="form-group"><label for="key_${method}_1">Key: </label><input id="key_${method}_1" class="form-control key"/></div>` +
+			`<div class="form-group"><label for="val_${method}_1">Value: </label><input id="val_${method}_1" class="form-control value"/></div>` +
 		`</div>`+
-		`<div><label>Produces: </label><input class="produces" type="text"/></div>` +
-		`<div><label>Status: </label><input class="status" type="text"/></div>` +
+		`<div class="form-group"><label for="produces_${method}">Produces: </label><input id="produces_${method}" class="form-control produces" type="text"/></div>` +
+		`<div class="form-group"><label for="delay_${method}">Delay: </label><input id="delay_${method}" class="form-control delay" type="text"/></div>` +
+		`<div class="form-group"><label for="status_${method}">Status: </label><input id="status_${method}" class="form-control status" type="text"/></div>` +
 		`</div>`;
-	$('.addRemoveMethod').click((event) => {
-		let method = event.target.value;
+	$('.addRemoveMethod').click(function(event) {
+		let target = event.target;
+		let method = target.value;
 		let el = $(`#${getElName(method)}`);
 		if(el.length) {
 			el.remove();
+			$(target).removeClass("active");
 		} else {
-			$('#formArea').append(genMethodPayload(method));
+			$(target).addClass("active");
+			$('#formArea').prepend(genMethodPayload(method));
 		}
 	});
-	$('#send').click((event) => {
+	$('#send').click(function(event) {
 
 			let payload = {routes: []};
 
-			$('#formArea > div').each((index, el) => {
+			$('#formArea > div').each(function(index, el) {
 				let context = $(el);
 				let method = context.children('.method').val();
 				let body = context.find('.body').val();
 				let produces = context.find('.produces').val();
+				let delay = context.find('.delay').val();
 				let status = context.find('.status').val();
 				let headers = {};
 
@@ -70,22 +86,25 @@ description: "Http mock tool"
 					headers[key] = value;
 				});
 
-				payload.routes.push({body, produces, headers, status, method});
+				payload.routes.push({body, produces, delay, headers, status, method});
 
 				console.log(JSON.stringify(payload));
 			});
 
-
-			$.ajax({
-				type: "POST",
-				url: "https://mock.icaroerasmo.com/rt/",
-				contentType: "application/json; charset=utf-8",
-				dataType: "json",
-				async: true,
-				data: JSON.stringify(payload),
-				success: function (response) {
-					$('#formArea').append(`https://mock.icaroerasmo.com/rt/run/${response.uuid}`);
-				}
+			$(document).ready(function() {
+				$.ajax({
+					type: "POST",
+					url: "https://mock.icaroerasmo.com/rt/",
+					contentType: "application/json; charset=utf-8",
+					dataType: "json",
+					async: true,
+					data: JSON.stringify(payload),
+					success: function (response) {
+						let urlDiv = $('#url');
+						urlDiv.empty();
+						urlDiv.val(response.uuid);
+					}
+				});
 			});
 		});
 </script>
