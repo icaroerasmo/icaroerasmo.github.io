@@ -54,27 +54,22 @@ description: "Http mock tool"
 		`<input class="method" type="hidden" value="${method}"/>` +
 		`<div class="form-group"><label for="body_${method}">Body: </label><textarea id="body_${method}" class="form-control body" type="text" rows="5"/></textarea><div>` +
 		`<div><label>headers: </label><button id="addHeaders" value="${method}" class="btn btn-primary"><i class="bi bi-plus"></i></button></div>` +
-		`<div id="headers_${method}" class="headers">` +
-		`<div id="headers_${method}_1" class="row">` +
-			`<div class="col-sm-5 form-group"><label for="key_${method}_1">Key: </label><input id="key_${method}_1" class="form-control key"/></div>` +
-			`<div class="col-sm-5 form-group"><label for="val_${method}_1">Value: </label><input id="val_${method}_1" class="form-control value"/></div>` +
-			`<div clas="col-sm-2"><button class="btn btn-danger"><i class="bi bi-trash"></i></button></div>` +
-		`</div>` +
-		`<div id="headers_${method}_2" class="row">` +
-			`<div class="col-sm-5 form-group"><label for="key_${method}_2">Key: </label><input id="key_${method}_2" class="form-control key"/></div>` +
-			`<div class="col-sm-5 form-group"><label for="val_${method}_2">Value: </label><input id="val_${method}_2" class="form-control value"/></div>` +
-			`<div clas="col-sm-2"><button class="btn btn-danger"><i class="bi bi-trash"></i></button></div>` +
-		`</div>` +
+		`<div class="headers">` +
 		`</div>`+
 		`</div>`+
 		`<div class="form-group"><label for="produces_${method}">Produces: </label><input id="produces_${method}" class="form-control produces" type="text"/></div>` +
 		`<div class="form-group"><label for="delay_${method}">Delay: </label><input id="delay_${method}" class="form-control delay" type="text"/></div>` +
 		`<div class="form-group"><label for="status_${method}">Status: </label><input id="status_${method}" class="form-control status" type="text"/></div>` +
 		`</div>`;
+	$('#formArea').on('click', '.headers button', function(event) {
+		let target = event.target;
+		let elId = target.value || target.parentElement.value;
+		$(`#${elId}`).remove();
+	});
 	$('#formArea').on('click', '#addHeaders', function(event) {
 		let target = event.target;
 		let method = target.value || target.parentElement.value;
-		$('#formArea').find(`#headers_${method}`).append(genHeaderPayload(method));
+		$(`#${getElName(method)} .headers`).append(genHeaderPayload(method));
 	});
 	$('.addRemoveMethod').click(function(event) {
 		let target = event.target;
