@@ -33,6 +33,179 @@ description: "Http mock tool"
   crossorigin="anonymous"></script>
 
 <script type="text/javascript">
+
+	const HTTP_METHODS_LIST = [
+				{
+					"code": "305",
+					"description": "Use Proxy"
+				},
+				{
+					"code": "307",
+					"description": "Temporary Redirect"
+				},
+				{
+					"code": "400",
+					"description": "Bad Request"
+				},
+				{
+					"code": "401",
+					"description": "Unauthorized"
+				},
+				{
+					"code": "402",
+					"description": "Payment Required"
+				},
+				{
+					"code": "403",
+					"description": "Forbidden"
+				},
+				{
+					"code": "404",
+					"description": "Not Found"
+				},
+				{
+					"code": "405",
+					"description": "Method Not Allowed"
+				},
+				{
+					"code": "406",
+					"description": "Not Acceptable"
+				},
+				{
+					"code": "407",
+					"description": "Proxy Authentication Required"
+				},
+				{
+					"code": "408",
+					"description": "Request Timeout"
+				},
+				{
+					"code": "409",
+					"description": "Conflict"
+				},
+				{
+					"code": "410",
+					"description": "Gone"
+				},
+				{
+					"code": "411",
+					"description": "Length Required"
+				},
+				{
+					"code": "412",
+					"description": "Precondition Failed"
+				},
+				{
+					"code": "413",
+					"description": "Payload Too Large"
+				},
+				{
+					"code": "414",
+					"description": "URI Too Long"
+				},
+				{
+					"code": "415",
+					"description": "Unsupported Media Type"
+				},
+				{
+					"code": "416",
+					"description": "Range Not Satisfiable"
+				},
+				{
+					"code": "417",
+					"description": "Expectation Failed"
+				},
+				{
+					"code": "418",
+					"description": "I'm a teapot"
+				},
+				{
+					"code": "426",
+					"description": "Upgrade Required"
+				},
+				{
+					"code": "500",
+					"description": "Internal Server Error"
+				},
+				{
+					"code": "501",
+					"description": "Not Implemented"
+				},
+				{
+					"code": "502",
+					"description": "Bad Gateway"
+				},
+				{
+					"code": "503",
+					"description": "Service Unavailable"
+				},
+				{
+					"code": "504",
+					"description": "Gateway Time-out"
+				},
+				{
+					"code": "505",
+					"description": "HTTP Version Not Supported"
+				},
+				{
+					"code": "102",
+					"description": "Processing"
+				},
+				{
+					"code": "207",
+					"description": "Multi-Status"
+				},
+				{
+					"code": "226",
+					"description": "IM Used"
+				},
+				{
+					"code": "308",
+					"description": "Permanent Redirect"
+				},
+				{
+					"code": "422",
+					"description": "Unprocessable Entity"
+				},
+				{
+					"code": "423",
+					"description": "Locked"
+				},
+				{
+					"code": "424",
+					"description": "Failed Dependency"
+				},
+				{
+					"code": "428",
+					"description": "Precondition Required"
+				},
+				{
+					"code": "429",
+					"description": "Too Many Requests"
+				},
+				{
+					"code": "431",
+					"description": "Request Header Fields Too Large"
+				},
+				{
+					"code": "451",
+					"description": "Unavailable For Legal Reasons"
+				},
+				{
+					"code": "506",
+					"description": "Variant Also Negotiates"
+				},
+				{
+					"code": "507",
+					"description": "Insufficient Storage"
+				},
+				{
+					"code": "511",
+					"description": "Network Authentication Required"
+				}
+			];
+	const HTTP_METHODS_LIST_OPTIONS = HTTP_METHODS_LIST.map(l => `<option value="${l.code}">${l.code} - ${l.description}</option>`);
+
 	let headersCounter = 0;
 	$("#copy-to-clipboard").click(function(event){
 		let urlVal = $("#url").val();
@@ -59,7 +232,7 @@ description: "Http mock tool"
 		`</div>`+
 		`<div class="form-group mt-4"><label for="produces_${method}" class="mb-2">Produces: </label><input id="produces_${method}" class="form-control produces" type="text"/></div>` +
 		`<div class="form-group mt-4"><label for="delay_${method}" class="mb-2">Delay: </label><input id="delay_${method}" class="form-control delay" type="text"/></div>` +
-		`<div class="form-group mt-4"><label for="status_${method}" class="mb-2">Status: </label><input id="status_${method}" class="form-control status" type="text"/></div>` +
+		`<div class="form-group mt-4"><label for="status_${method}" class="mb-2">Status: </label><select id="status_${method}" class="form-control status"><option>Select</option>${HTTP_METHODS_LIST_OPTIONS}</select></div>` +
 		`</div>`;
 	$('#formArea').on('click', '.headers button', function(event) {
 		let target = event.target;
