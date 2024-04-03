@@ -232,7 +232,7 @@ description: "Http mock tool"
 		`</div>`+
 		`<div class="form-group mt-4"><label for="produces_${method}" class="mb-2">Produces: </label><input id="produces_${method}" class="form-control produces" type="text"/></div>` +
 		`<div class="form-group mt-4"><label for="delay_${method}" class="mb-2">Delay: </label><input id="delay_${method}" class="form-control delay" type="text"/></div>` +
-		`<div class="form-group mt-4"><label for="status_${method}" class="mb-2">Status: </label><select id="status_${method}" class="form-control status"><option>Select</option>${HTTP_METHODS_LIST_OPTIONS}</select></div>` +
+		`<div aria-label="Response http status" class="form-group mt-4"><label for="status_${method}" class="mb-2">Status: </label><select id="status_${method}" class="form-select status"><option>Select</option>${HTTP_METHODS_LIST_OPTIONS}</select></div>` +
 		`</div>`;
 	$('#formArea').on('click', '.headers button', function(event) {
 		let target = event.target;
