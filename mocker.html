@@ -45,7 +45,7 @@ description: "Http mock tool"
 		return `<div id="${headerId}" class="row">` +
 					`<div class="col-sm-5 form-group"><label for="key_${headerSuffix}">Key: </label><input id="key_${headerSuffix}" class="form-control key"/></div>` +
 					`<div class="col-sm-5 form-group"><label for="val_${headerSuffix}">Value: </label><input id="val_${headerSuffix}" class="form-control value"/></div>` +
-					`<div clas="col-sm-2"><button class="btn btn-danger" value="${headerId}"><i class="bi bi-trash"></i></button></div>` +
+					`<div class="col-sm-2 d-flex align-items-end"><button class="btn btn-danger" value="${headerId}"><i class="bi bi-trash"></i></button></div>` +
 				`</div>`;
 	};
 	let genMethodPayload = (method) => 
@@ -53,8 +53,8 @@ description: "Http mock tool"
 		`<div class="row"><h2>${method}</h2></div>` + 
 		`<input class="method" type="hidden" value="${method}"/>` +
 		`<div class="form-group"><label for="body_${method}">Body: </label><textarea id="body_${method}" class="form-control body" type="text" rows="5"/></textarea><div>` +
-		`<div><label>headers: </label><button id="addHeaders" value="${method}" class="btn btn-primary"><i class="bi bi-plus"></i></button></div>` +
-		`<div class="headers">` +
+		`<div class="d-flex justify-content-between"><label>headers: </label><button id="addHeaders" value="${method}" class="btn btn-primary">Add headers</button></div>` +
+		`<div style="border-radius: var(--bs-border-radius); height:300px; overflow-y: scroll; overflow-x: hidden; border: 1px #dee2e6 solid; padding-left: 20px;" class="headers">` +
 		`</div>`+
 		`</div>`+
 		`<div class="form-group"><label for="produces_${method}">Produces: </label><input id="produces_${method}" class="form-control produces" type="text"/></div>` +
