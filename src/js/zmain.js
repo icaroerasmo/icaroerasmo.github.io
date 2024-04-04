@@ -1,14 +1,14 @@
 (function( $, window, undefined ) {
   // Menu
   $("a#slide").click(function(){
-    $("#sidebar,a#slide,#fade").addClass("slide");
+    $("#sidebar,a#slide,#nFade").addClass("slide");
     $("#open").hide();
     $("#search").hide();
     $("#close").show();
   });
 
-  $("#fade").click(function(){
-    $("#sidebar,a#slide,#fade").removeClass("slide");
+  $("#nFade").click(function(){
+    $("#sidebar,a#slide,#nFade").removeClass("slide");
     $("#open").show();
     $("#search").show();
     $("#close").hide();
