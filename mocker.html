@@ -6,6 +6,7 @@ description: "Http mock tool"
 ---
 <div class="container">
 	<div class="row">
+		<div id="messages" class="mb-3"></div>
 		<label for="url">Generated URL: </label>
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="basic-addon3">https://mock.icaroerasmo.com/rt/run/</span>
@@ -204,13 +205,33 @@ description: "Http mock tool"
 					"description": "Network Authentication Required"
 				}
 			];
+	const urlSuffix = "https://mock.icaroerasmo.com/rt/run/";
 	const HTTP_METHODS_LIST_OPTIONS = HTTP_METHODS_LIST.map(l => `<option value="${l.code}">${l.code} - ${l.description}</option>`);
-
+				
 	let headersCounter = 0;
 	$("#copy-to-clipboard").click(function(event){
 		let urlVal = $("#url").val();
-		navigator.clipboard.writeText(`https://mock.icaroerasmo.com/rt/run/${urlVal}`);
+		navigator.clipboard.writeText(`${urlSuffix}${urlVal}`);
 	});
+	let generateSuccessMessage = (uuid) => `<div id="success" class="alert alert-success d-flex justify-content-between" role="alert">` +
+											`	<span>Mock <a href=\"${urlSuffix}${uuid}\" class=\"alert-link\">${uuid}</a> created successfully.</span>` +
+											`	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>` +
+											`</div>`;
+	let generateErrorMessage = (message) => `<div class="alert alert-danger d-flex justify-content-between" role="alert"> ` +
+											`	<span>${message}</span>` +
+											`	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>` +
+											`</div>`;
+	let scrollToMessage = () => {
+		if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {
+			$('#container').animate({
+				scrollTop: $("#messages").scrollIntoView({ behavior: "smooth" })
+			}, 'slow');
+		} else {
+			$('html, body').animate({
+			scrollTop: $("#messages").offset().top
+			}, 'slow');
+		}
+	};
 	let getElName = (method) => method.toLowerCase() + 'Req';
 	let genHeaderPayload = (method) => {
 		let headerSuffix = method + "_" + headersCounter++;
@@ -282,11 +303,11 @@ description: "Http mock tool"
 				});
 
 				payload.routes.push({body, produces, delay, headers, status, method});
-
-				console.log(JSON.stringify(payload));
 			});
 
 			$(document).ready(function() {
+				let urlDiv = $('#url');
+				$("#messages").empty();
 				$.ajax({
 					type: "POST",
 					url: "https://mock.icaroerasmo.com/rt/",
@@ -295,9 +316,19 @@ description: "Http mock tool"
 					async: true,
 					data: JSON.stringify(payload),
 					success: function (response) {
-						let urlDiv = $('#url');
-						urlDiv.empty();
+						urlDiv.val("");
 						urlDiv.val(response.uuid);
+						$("#messages").append(generateSuccessMessage(response.uuid));
+						scrollToMessage();
+					},
+					error: function (xhr, ajaxOptions) {
+
+						urlDiv.val("");
+
+						let error = JSON.parse(xhr.responseText);
+
+						$("#messages").append(generateErrorMessage(error.description));
+						scrollToMessage();
 					}
 				});
 			});
