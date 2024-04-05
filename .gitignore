@@ -2,3 +2,5 @@
 **/yarn.lock
 **/package.lock
 **/~/**
+**/_site/**
+package-lock.json
